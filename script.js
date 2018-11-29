@@ -75,3 +75,46 @@ function third() {
     console.log(a+d);
 }
 
+
+/////////////////////////////////////
+// The this keyword
+
+
+//console.log(this);	//window object
+// coz default object
+
+calculateAge(1985);
+
+function calculateAge(year) {
+    console.log(2016 - year);
+    console.log(this);	//global object =>window object
+}
+
+var john = {
+    name: 'John',
+    yearOfBirth: 1990,
+    calculateAge: function() {
+        console.log(this);		//john object
+        console.log(2016 - this.yearOfBirth);	//2016- 1990
+        
+        function innerFunction() {
+            console.log(this);	//window object!!!!!
+								//because a regular function
+        }
+        innerFunction();
+    }
+}
+
+john.calculateAge(); //john object
+
+
+var mike = {
+    name: 'Mike',
+    yearOfBirth: 1984
+};
+
+//METHOD BORROWING
+mike.calculateAge = john.calculateAge; //no parenthesis coz here we treat functions as variables
+mike.calculateAge();		// 2016 - 1984!! and not 2016-1990
+//HENCE THIS KEYWORD IS ONLY ASSIGNED VALUE 
+//WHEN THE OBJECT CALLS THE METHOD
