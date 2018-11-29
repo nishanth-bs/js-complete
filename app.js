@@ -14,5 +14,32 @@ var scores, roundScore, activePlayer;
 scores = [0,0];
 roundScore = 0;
 activePlayer = 0;
+document.getElementById('score-0').textContent = '0';
+document.getElementById('score-1').textContent = '0';
+document.getElementById('current-0').textContent = '0';
+document.getElementById('current-1').textContent = '0';
+//setter
+//document.querySelector('#current-' + activePlayer).textContent = dice;
+//document.querySelector('#current-' + activePlayer).innerHTML = '<em>' + dice + '</em>';
+// getter
+//var x = document.querySelector('#score-0').textContent;
 
-dice = Math.floor(Math.random() * 6) + 1
+document.querySelector('.dice').style.display = 'none';
+document.querySelector('.btn-roll').addEventListener('click', function() {
+    
+        // 1. Random number
+        var dice = Math.floor(Math.random() * 6) + 1;
+		//Math.floor removes the decimal
+		//Math.random() * 6 gives a number between 0 and 5	
+
+
+        //2. Display the result
+        var diceDOM = document.querySelector('.dice');	//as we need to reuse the element many times
+        diceDOM.style.display = 'block';
+        diceDOM.src = 'dice-' + dice + '.png';	// images named as dice-1, dice-2 etc 
+
+
+        //3. Update the round score IF the rolled number was NOT a 1
+   
+});
+
