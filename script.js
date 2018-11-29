@@ -35,3 +35,43 @@ foo();
 console.log(age); 	//prints23 globalexecution context object
 
 
+
+/////////////////////////////////////
+// Scoping
+
+
+// First scoping example
+var a = 'Hello!';
+first();
+
+function first() {
+    var b = 'Hi!';
+    second();
+
+    function second() {
+        var c = 'Hey!';
+        console.log(a + b + c);  //prints hello! hi! hey!
+    }
+}
+
+
+// Example to show the differece between execution stack and scope chain
+var a = 'Hello!';
+first();
+
+function first() {
+    var b = 'Hi!';
+    second();
+
+    function second() {
+        var c = 'Hey!';
+        third()	//has access to third function because of scope chain [global scope]
+    }
+}
+
+function third() {
+    var d = 'John';
+    //console.log(c);	//error can't access c because different scope 
+    console.log(a+d);
+}
+
