@@ -11,13 +11,7 @@ GAME RULES:
 
 var scores, roundScore, activePlayer;
 
-scores = [0,0];
-roundScore = 0;
-activePlayer = 0;
-document.getElementById('score-0').textContent = '0';
-document.getElementById('score-1').textContent = '0';
-document.getElementById('current-0').textContent = '0';
-document.getElementById('current-1').textContent = '0';
+init();
 //setter
 //document.querySelector('#current-' + activePlayer).textContent = dice;
 //document.querySelector('#current-' + activePlayer).innerHTML = '<em>' + dice + '</em>';
@@ -72,6 +66,7 @@ document.querySelector('.btn-hold').addEventListener('click',function(){
 	}
 });
 
+
 function nextPlayer(){
 	activePlayer === 0? activePlayer = 1 : activePlayer = 0;
 			roundScore = 0;
@@ -86,4 +81,32 @@ function nextPlayer(){
 			//document.querySelector('.player-1-panel').classList.add('active');
 						
 			document.querySelector('.dice').style.display = 'none';
+}
+
+document.querySelector('.btn-new').addEventListener('click', init);
+
+function init() {
+    scores = [0, 0];
+    activePlayer = 0;
+    roundScore = 0;
+    gamePlaying = true;
+    
+    document.querySelector('.dice').style.display = 'none';
+
+    document.getElementById('score-0').textContent = '0';
+    document.getElementById('score-1').textContent = '0';
+    document.getElementById('current-0').textContent = '0';
+    document.getElementById('current-1').textContent = '0';
+	
+	//to remove the winner title displayed from the  previous game
+    document.getElementById('name-0').textContent = 'Player 1';
+    document.getElementById('name-1').textContent = 'Player 2';
+    document.querySelector('.player-0-panel').classList.remove('winner');
+    document.querySelector('.player-1-panel').classList.remove('winner');
+	//removing a class that's not defined on the elementis fine
+    document.querySelector('.player-0-panel').classList.remove('active');
+    document.querySelector('.player-1-panel').classList.remove('active');
+	
+	//removing and adding active class again to avoid the addition ofdouble classes
+    document.querySelector('.player-0-panel').classList.add('active');
 }
